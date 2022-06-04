@@ -1,2 +1,2 @@
 # photo-generator-library
-A Javascript library that scrapes the web and generates url for free stock photos for use
+An open source Javascript library that scrapes the web and generates url to free stock photos for use
