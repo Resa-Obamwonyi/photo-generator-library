@@ -1,1 +1,1 @@
-// This file holds all the he;lper functions available to the package user
+// This file holds all the helper functions available to the package user

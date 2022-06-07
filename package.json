@@ -1,0 +1,27 @@
+{
+  "name": "photo_generator",
+  "version": "1.0.0",
+  "description": "a photo generator library",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Resa-Obamwonyi/photo-generator-library.git"
+  },
+  "keywords": [
+    "photos",
+    "scraper",
+    "stock_photos"
+  ],
+  "author": "Theresa Obamwonyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Resa-Obamwonyi/photo-generator-library/issues"
+  },
+  "homepage": "https://github.com/Resa-Obamwonyi/photo-generator-library#readme",
+  "dependencies": {
+    "nodejs": "^0.0.0"
+  }
+}
