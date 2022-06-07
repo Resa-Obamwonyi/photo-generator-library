@@ -1,10 +1,8 @@
-// This file holds the scaper engine that gets all the urls from image platforms.
+// This file holds the scaper engine that gets all the urls from free stock images platforms.
 
-// Scrape a specific url for images that are free stock
-function scrape(site_url){
-    return site_url;
-}
+// Scrape a url for images that are free stock and match image name
+function scraper(imageName){
+    return ;
 
-function sendScraperResponse(imageUrlArray){
-    return imageUrlArray;
+    // Needed functions: .get(), .getAll(), .download(), .display(),
 }
