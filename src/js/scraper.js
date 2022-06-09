@@ -19,6 +19,7 @@ function photoScraper(imageName){
 
     // url array to fill from scraper
     let imageUrls = [];
+    let current_url;
     return ;
 
     // Needed methods: .get(), .getAll(), .download(), .display(),
