@@ -1,7 +1,10 @@
 /* This file holds the scaper engine that gets all the urls from free stock images platforms .*/
+const cheerio = require('cheerio');
+const axios = require('axios');
+
 
 // Scrape a url for images that are free stock and match image name
-function photoScraper(imageName){
+function photoScraper(imageName) {
     // store a reference to the object context
     let _this = this;
 
@@ -20,7 +23,22 @@ function photoScraper(imageName){
     // url array to fill from scraper
     let imageUrls = [];
     let current_url;
-    return ;
+
 
     // Needed methods: .get(), .getAll(), .download(), .display(),
+
+    this.get = async (siteUrl) => {
+        try {
+            let data = await axios.get(siteUrl);
+            let urls = cheerio.load(data);
+            console.log(urls);            
+            return urls
+        }
+        catch(err){
+            console.log("error:", err);
+        }
+    }
 }
+let scrape = new photoScraper;
+
+scrape.get('https://pixabay.com/photos/');
