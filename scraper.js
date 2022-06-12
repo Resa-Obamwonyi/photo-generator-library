@@ -1,16 +1,16 @@
 /* This file holds the scaper engine that gets all the urls from free stock images platforms .*/
-const cheerio = require('cheerio');
 const axios = require('axios');
+const cheerio = require('cheerio');
 
 
 // Scrape a url for images that are free stock and match image name
-function photoScraper(imageName) {
+function photoScraper() {
     // store a reference to the object context
     let _this = this;
 
     // free stock images website
-    let pixabay = 'https://pixabay.com/photos/';
-    let unsplash = 'https://unsplash.com/';
+    let pixabay = 'https://pixabay.com/photos/search';
+    let unsplash = 'https://unsplash.com/s/photos';
     let pexels = 'https://www.pexels.com/';
     let pikWizard = 'https://pikwizard.com/';
     let rawPixel = 'https://www.rawpixel.com/free-images';
@@ -27,18 +27,32 @@ function photoScraper(imageName) {
 
     // Needed methods: .get(), .getAll(), .download(), .display(),
 
-    this.get = async (siteUrl) => {
+    this.get = async (siteUrl, imageName) => {
+        // console.log(`${siteUrl}/${imageName}/`);
         try {
-            let data = await axios.get(siteUrl);
-            let urls = cheerio.load(data);
-            console.log(urls);            
-            return urls
+            const { data } = await axios.get(`${siteUrl}/${imageName}/`);
+            const $ = cheerio.load(data);
+            const imgItems = $.html('figure a');
+
+            let imageUrls = [];
+            $('.IMl2x Ha8Q_').each(() => {
+                let url = $(this.attr('href'));
+                imageUrls.push({ "url": url });
+            });
+            // imgItems.forEach(element => {
+
+            // });( (index, value) => {
+            //     var link = $(value).attr('href');
+            //     links.push({"link": link});
+            //  });   
+            console.log(imageUrls);
+            // return urls
         }
-        catch(err){
+        catch (err) {
             console.log("error:", err);
         }
     }
 }
-let scrape = new photoScraper;
+let scrape = new photoScraper();
 
-scrape.get('https://pixabay.com/photos/');
+scrape.get('https://unsplash.com/s/photos', 'pie');
