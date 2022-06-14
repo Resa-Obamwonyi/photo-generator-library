@@ -32,15 +32,13 @@ function photoScraper() {
         try {
             const { data } = await axios.get(`${siteUrl}/${imageName}/`);
             const $ = cheerio.load(data);
-            const imgItems = $.html('figure a');
+            const imageUrls = [];
 
-            let imageUrls = [];
-            imgItems.foreach((index, value) => {
-                var link = $(value).attr('href');
-                imageUrls.push({"link": link});
-             });   
-            console.log(imageUrls);
-            // return urls
+            $('figure a').each((_idx, el) => {
+                const url = $(el).prop('href');
+                imageUrls.push(url);
+            });
+            return imageUrls;
         }
         catch (err) {
             console.log("error:", err);
@@ -49,4 +47,4 @@ function photoScraper() {
 }
 let scrape = new photoScraper();
 
-scrape.get('https://unsplash.com/s/photos', 'pie');
+scrape.get('https://unsplash.com/s/photos', 'pie').then((imageUrls) => console.log(imageUrls));
