@@ -35,16 +35,10 @@ function photoScraper() {
             const imgItems = $.html('figure a');
 
             let imageUrls = [];
-            $('.IMl2x Ha8Q_').each(() => {
-                let url = $(this.attr('href'));
-                imageUrls.push({ "url": url });
-            });
-            // imgItems.forEach(element => {
-
-            // });( (index, value) => {
-            //     var link = $(value).attr('href');
-            //     links.push({"link": link});
-            //  });   
+            imgItems.foreach((index, value) => {
+                var link = $(value).attr('href');
+                imageUrls.push({"link": link});
+             });   
             console.log(imageUrls);
             // return urls
         }
