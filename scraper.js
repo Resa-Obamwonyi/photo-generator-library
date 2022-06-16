@@ -13,12 +13,8 @@ function photoScraper() {
     let unsplash = 'https://unsplash.com/s/photos';
     let pexels = 'https://www.pexels.com/';
     let pikWizard = 'https://pikwizard.com/';
-    let rawPixel = 'https://www.rawpixel.com/free-images';
     let reShot = 'https://www.reshot.com/free-stock-photos/';
     let freepik = 'https://www.freepik.com/';
-    let vecteezy = 'https://www.vecteezy.com/free-photos';
-    let morgueFile = 'https://morguefile.com/';
-    let pikJumbo = 'https://picjumbo.com/free-stock-photos/';
 
     // url array to fill from scraper
     let imageUrls = [];
@@ -30,30 +26,29 @@ function photoScraper() {
     this.get = async (siteName, imageName) => {
         let siteUrl;
         siteName = siteName.toUpperCase()
-        if( siteName == 'UNSPLASH'){
+        if (siteName == 'UNSPLASH') {
             siteUrl = unsplash;
         }
 
-        if( siteName == 'PIXABAY'){
+        if (siteName == 'PIXABAY') {
             siteUrl = pixabay;
         }
 
-        if( siteName == 'PEXELS'){
+        if (siteName == 'PEXELS') {
             siteUrl = pexels;
         }
 
-        if( siteName == 'FREEPIK'){
+        if (siteName == 'FREEPIK') {
             siteUrl = freepik;
         }
 
-        if( siteName == 'PIKWIZARD'){
+        if (siteName == 'PIKWIZARD') {
             siteUrl = pikWizard;
         }
 
-        if(siteName == 'RESHOT'){
+        if (siteName == 'RESHOT') {
             siteUrl == reShot;
         }
-
         try {
             const { data } = await axios.get(`${siteUrl}/${imageName}/`);
             const $ = cheerio.load(data);
@@ -61,7 +56,7 @@ function photoScraper() {
 
             $('figure a').each((_idx, el) => {
                 const url = $(el).prop('href');
-                imageUrls.push(url);
+                imageUrls.push(siteUrl + url);
             });
             return imageUrls;
         }
@@ -72,4 +67,4 @@ function photoScraper() {
 }
 let scrape = new photoScraper();
 
-scrape.get('sitename', 'pie').then((imageUrls) => console.log(imageUrls));
+scrape.get('unsplash', 'pie').then((imageUrls) => console.log(imageUrls));
