@@ -27,8 +27,33 @@ function photoScraper() {
 
     // Needed methods: .get(), .getAll(), .download(), .display(),
 
-    this.get = async (siteUrl, imageName) => {
-        // console.log(`${siteUrl}/${imageName}/`);
+    this.get = async (siteName, imageName) => {
+        let siteUrl;
+        siteName = siteName.toUpperCase()
+        if( siteName == 'UNSPLASH'){
+            siteUrl = unsplash;
+        }
+
+        if( siteName == 'PIXABAY'){
+            siteUrl = pixabay;
+        }
+
+        if( siteName == 'PEXELS'){
+            siteUrl = pexels;
+        }
+
+        if( siteName == 'FREEPIK'){
+            siteUrl = freepik;
+        }
+
+        if( siteName == 'PIKWIZARD'){
+            siteUrl = pikWizard;
+        }
+
+        if(siteName == 'RESHOT'){
+            siteUrl == reShot;
+        }
+
         try {
             const { data } = await axios.get(`${siteUrl}/${imageName}/`);
             const $ = cheerio.load(data);
@@ -47,4 +72,4 @@ function photoScraper() {
 }
 let scrape = new photoScraper();
 
-scrape.get('https://unsplash.com/s/photos', 'pie').then((imageUrls) => console.log(imageUrls));
+scrape.get('sitename', 'pie').then((imageUrls) => console.log(imageUrls));
