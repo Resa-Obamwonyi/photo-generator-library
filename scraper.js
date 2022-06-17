@@ -18,13 +18,12 @@ function photoScraper() {
 
     // url array to fill from scraper
     let imageUrls = [];
-    let current_url;
+    let siteUrl;
 
 
     // Needed methods: .get(), .getAll(), .download(), .display(),
 
     this.get = async (siteName, imageName) => {
-        let siteUrl;
         siteName = siteName.toUpperCase()
         if (siteName == 'UNSPLASH') {
             siteUrl = unsplash;
@@ -52,7 +51,6 @@ function photoScraper() {
         try {
             const { data } = await axios.get(`${siteUrl}/${imageName}/`);
             const $ = cheerio.load(data);
-            const imageUrls = [];
 
             $('figure a').each((_idx, el) => {
                 const url = $(el).prop('href');
